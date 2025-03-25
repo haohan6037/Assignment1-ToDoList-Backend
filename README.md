@@ -4,6 +4,7 @@ This project just for assignment of my CICD class.
 I will follow the steps:
 I need to do screenshot for each step.
 1. Create backlog for Backend and Frontend and make sure the sort.
+
 | ID | Module   | User Story                                                                                                                                       | Priority |
 |----|----------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | 1  | Frontend | As a user, I want to register an account so that I can log in and use the app.                                                                  | High     |
