@@ -92,6 +92,7 @@ DATABASES = {
         'PASSWORD': 'npg_4KtCozMaL8NJ',
         'HOST': 'ep-morning-sun-a7712nbb-pooler.ap-southeast-2.aws.neon.tech',
         'PORT': '5432',
+        'CONN_MAX_AGE': 0,
     }
 }
 
