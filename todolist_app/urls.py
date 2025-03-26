@@ -1,12 +1,16 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework import routers
+from rest_framework.routers import DefaultRouter
 
 from todolist_app.views import *
 
-router = routers.DefaultRouter()
-# router.register('notes', TaskViewSet, basename='notes')
-urlpatterns = router.urls
-urlpatterns.append(path('register/', RegisterView.as_view(), name='register'))
-urlpatterns.append(path('login/', LoginView.as_view(), name='login'))
-urlpatterns.append(path('logout/', LogoutView.as_view(), name='logout'))
-urlpatterns.append(path('user/', UserView.as_view(), name='user'))
+router = DefaultRouter()
+router.register(r'tasks', TaskViewSet, basename='task')
+
+urlpatterns = [
+    path('', include(router.urls)),  # 让所有自动生成的 REST 路由生效
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('user/', UserView.as_view(), name='user'),
+]
