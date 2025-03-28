@@ -36,6 +36,11 @@ class UserView(generics.RetrieveAPIView):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
+class DeleteUserView(generics.DestroyAPIView):
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserSerializer
+
 
 # Task
 
