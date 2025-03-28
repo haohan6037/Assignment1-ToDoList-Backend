@@ -20,7 +20,7 @@ class SystemViewTest(TestCase):
 
         # check if user is created
         self.assertTrue(User.objects.filter(username='newuser').exists())
-        print("1. register testing finish " + self.user.username)
+        print("1. register testing finish username:" + self.user.username)
 
         print("2. login testing start")
         # 登录获取token
@@ -29,28 +29,22 @@ class SystemViewTest(TestCase):
         # 假设返回token
         self.token = response.json()['token']
         self.assertIsNotNone(self.token)
-        print("2. login testing finish " + self.token)
+        print("2. login testing finish, token:" + self.token)
 
 
         print("3. view user testing start")
         response = self.client.get('/api/user/', HTTP_AUTHORIZATION='Token ' + self.token)
         # response = self.client.get('/api/user/')
         self.assertEqual(response.status_code, 200)
-        print("3. user testing finish"+response.json()['username'])
+        print("3. user testing finish username:"+response.json()['username'])
 
-#     @pytest.mark.run(order=5)
-    #     def test_logout_view(self):
-    #         print("4.logout testing start")
-#         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.token)
-#         response = self.client.get('/api/logout/')
-#         self.assertEqual(response.status_code, 200)
-#         print("4.logout testing finish")
+        print("4.logout testing start")
+        response = self.client.post('/api/logout/',HTTP_AUTHORIZATION='Token ' + self.token)
+        self.assertEqual(response.status_code, 200)
+        print("4.logout testing finish")
 
-
-        print("5. delete user start")
         # delete user clean up
         self.user.delete()
-        print("5. delete user finish")
 
 
 class TaskModelTest(TestCase):
@@ -58,4 +52,4 @@ class TaskModelTest(TestCase):
         user = User.objects.create_user(username='testuser', password='testpass')
         task = Task.objects.create(title="Test Task", description="desc", status="todo", user=user)
         self.assertEqual(task.title, "Test Task")
-        print("6. create task testing finish")
+        print("5. create task testing finish")
