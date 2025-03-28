@@ -49,6 +49,7 @@ class SystemViewTest(TestCase):
 
 class TaskModelTest(TestCase):
     def test_create_task(self):
+        print("5. create task testing start")
         user = User.objects.create_user(username='testuser', password='testpass')
         task = Task.objects.create(title="Test Task", description="desc", status="todo", user=user)
         self.assertEqual(task.title, "Test Task")
